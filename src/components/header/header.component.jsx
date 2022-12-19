@@ -9,14 +9,24 @@ import { app } from '../../firebase.config';
 import { Link } from 'react-router-dom';
 import Avatar from '../../img/avatar.png';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const login = async () => {
-    const response = await signInWithPopup(firebaseAuth, provider);
-    console.log(response);
+    if (!user) {
+      const {
+        user: { refreshToken, providerData },
+      } = await signInWithPopup(firebaseAuth, provider);
+      dispatch(authActions.setUser(providerData[0]));
+      localStorage.setItem('user', JSON.stringify(providerData[0]));
+    }
   };
 
   return (
@@ -52,7 +62,7 @@ const Header = () => {
           <div className="relative">
             <motion.img
               whileTap={{ scale: 0.6 }}
-              src={Avatar}
+              src={user ? user.photoURL : Avatar}
               alt="userprofile"
               className="w-10 h-10 shadow-xl rounded-full cursor-pointer"
               onClick={login}
