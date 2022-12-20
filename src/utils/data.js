@@ -1,8 +1,9 @@
 import I1 from '../img/i1.png';
 import D1 from '../img/d1.png';
 import F1 from '../img/f1.png';
+import C3 from '../img/c3.png';
 
-const heroData = [
+export const heroData = [
   {
     id: 1,
     img: I1,
@@ -14,21 +15,21 @@ const heroData = [
     id: 2,
     img: F1,
     name: 'Fruits',
-    description: 'Chocolate & Vanilla',
-    price: '5.25',
+    description: 'Fresh Strawberries',
+    price: '10.25',
   },
   {
     id: 3,
-    img: I1,
-    name: 'Icecreams',
-    description: 'Chocolate & Vanilla',
-    price: '5.25',
+    img: C3,
+    name: 'Forzen Foods',
+    description: 'Nuggets & Fries',
+    price: '8.25',
   },
   {
     id: 4,
-    img: I1,
-    name: 'Icecreams',
-    description: 'Chocolate & Vanilla',
+    img: D1,
+    name: 'Cool Drinks',
+    description: 'Coca Cola & Pepsi',
     price: '5.25',
   },
 ];

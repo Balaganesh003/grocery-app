@@ -16,7 +16,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       <div className="w-screen h-auto flex flex-col bg-primary ">
         <Header />
         <main className="mt-14 md:mt-20 md:px-16 px-4 py-4  w-full">
