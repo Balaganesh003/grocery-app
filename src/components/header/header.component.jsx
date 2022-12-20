@@ -93,7 +93,9 @@ const Header = () => {
                 className="w-40 bg-blue-300 shadow-xl flex flex-col  top-12 right-0 rounded-lg absolute">
                 {user && user.email === 'k.balaganesh26@gmail.com' && (
                   <Link to={'/createItem'}>
-                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-blue-400 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg">
+                    <p
+                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-blue-400 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                      onClick={toggleMenu}>
                       New Item <MdAdd />
                     </p>
                   </Link>
@@ -128,22 +130,32 @@ const Header = () => {
               className="w-40 bg-blue-300 shadow-xl flex flex-col  top-12 left-0 rounded-lg absolute">
               {user && user.email === 'k.balaganesh26@gmail.com' && (
                 <Link to={'/createItem'}>
-                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-blue-400 transition-all duration-100 ease-in-out text-textColor text-base hover:text-headingColor rounded-lg">
+                  <p
+                    className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-blue-400 transition-all duration-100 ease-in-out text-textColor text-base hover:text-headingColor rounded-lg"
+                    onClick={toggleMenu}>
                     New Item <MdAdd />
                   </p>
                 </Link>
               )}
               <ul className="flex  gap-1 flex-col ">
-                <li className="text-base cursor-pointer text-textColor  hover:bg-blue-400 hover:text-headingColor duration-100 transition-all ease-in-out px-4 py-2 rounded-lg">
+                <li
+                  className="text-base cursor-pointer text-textColor  hover:bg-blue-400 hover:text-headingColor duration-100 transition-all ease-in-out px-4 py-2 rounded-lg"
+                  onClick={toggleMenu}>
                   Home
                 </li>
-                <li className="text-base cursor-pointer px-4 py-2 text-textColor hover:bg-blue-400 hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg">
+                <li
+                  className="text-base cursor-pointer px-4 py-2 text-textColor hover:bg-blue-400 hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg"
+                  onClick={toggleMenu}>
                   Menu
                 </li>
-                <li className="text-base cursor-pointer px-4 py-2 hover:bg-blue-400 text-textColor hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg">
+                <li
+                  className="text-base cursor-pointer px-4 py-2 hover:bg-blue-400 text-textColor hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg"
+                  onClick={toggleMenu}>
                   About
                 </li>
-                <li className="text-base cursor-pointer px-4 py-2 hover:bg-blue-400 text-textColor hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg">
+                <li
+                  className="text-base cursor-pointer px-4 py-2 hover:bg-blue-400 text-textColor hover:text-headingColor duration-100 transition-all ease-in-out rounded-lg"
+                  onClick={toggleMenu}>
                   Contact
                 </li>
               </ul>
