@@ -1,6 +1,7 @@
 import React from 'react';
 import Delivery from '../../img/delivery.png';
 import HeroBg from '../../img/heroBg.png';
+import I1 from '../img/i1.png';
 
 const Home = () => {
   return (
@@ -41,13 +42,26 @@ const Home = () => {
           Order Now
         </button>
       </div>
-      <div className="py-2 flex-1 flex items-center ">
+      <div className="py-2 flex-1 flex items-center relative ">
         <img
           src={HeroBg}
           alt="HeroBg"
           className=" ml-auto h-420 w-full lg:w-auto  lg:h-625 "
         />
-        <div className="w-full h-full absolute flex items-center justify-center"></div>
+        <div className="w-full h-full  flex items-center absolute top-0 left-0 justify-center px-16 py-4">
+          <div className="w-190 p-4  bg-cardOverlay backdrop-blur-md rounded-3xl flex items-center justify-center flex-col ">
+            <img src={I1} className="w-30 -mt-20" alt="I1" />
+            <p className="text-xl text-center font-semibold mt-4 text-textColor">
+              Icecreams
+            </p>
+            <p className="text-sm text-lighttextGray mt-2 mb-3">
+              Chocolate & Vanilla
+            </p>
+            <p className="text-sm  font-semibold text-headingColor">
+              <span className="text-xs text-red-600">$</span> 5.25
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
