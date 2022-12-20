@@ -113,7 +113,7 @@ const Header = () => {
 
       {/* Mobile */}
 
-      <div className="flex items-center justify-between md:hidden w-full h-full ">
+      <div className="flex items-center justify-between md:hidden w-full h-full  ">
         <div className="relative">
           <motion.img
             whileTap={{ scale: 0.6 }}
