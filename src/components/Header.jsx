@@ -1,18 +1,18 @@
 import React from 'react';
-import Logo from '../../img/logo.png';
-import Avatar from '../../img/avatar.png';
+import Logo from '../img/logo.png';
+import Avatar from '../img/avatar.png';
 import { AiFillShopping } from 'react-icons/ai';
 import { MdAdd, MdLogout } from 'react-icons/md';
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { app } from '../../firebase.config';
+import { app } from '../firebase.config';
 
 import { motion } from 'framer-motion';
 
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/auth-slice';
-import { uiActions } from '../../store/ui-slice';
+import { authActions } from '../store/auth-slice';
+import { uiActions } from '../store/ui-slice';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
@@ -55,7 +55,7 @@ const Header = () => {
             initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 200 }}
-            className="flex items-center gap-8 ">
+            className="flex items-center gap-12 ">
             <li className="text-base cursor-pointer text-textColor hover:text-headingColor duration-100 transition-all ease-in-out">
               Home
             </li>
