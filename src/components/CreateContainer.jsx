@@ -1,6 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
+import { storage } from '../firebase.config';
 
 import {
   MdFastfood,
@@ -11,6 +18,7 @@ import {
 } from 'react-icons/md';
 import { categories } from '../utils/data';
 import Loader from './Loader';
+import { saveItem } from '../utils/firebaseFunctions';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('');
@@ -26,13 +34,105 @@ const CreateContainer = () => {
   const uploadImage = (e) => {
     setIsLoading(true);
     const imageFile = e.target.files[0];
-
-    console.log(imageFile);
+    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      },
+      (error) => {
+        console.log(error);
+        setFields(true);
+        setMessage('Error while uploading image : Try again');
+        setAlertStatus('danger');
+        setTimeout(() => {
+          setFields(false);
+          setIsLoading(false);
+        }, 4000);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImage(downloadURL);
+          setIsLoading(false);
+          setFields(true);
+          setMessage('Image uploaded successfully');
+          setAlertStatus('success');
+          setTimeout(() => {
+            setFields(false);
+          }, 4000);
+        });
+      }
+    );
   };
 
-  const deleteImage = () => {};
+  const deleteImage = () => {
+    setIsLoading(true);
+    const deleteRef = ref(storage, image);
+    deleteObject(deleteRef).then(() => {
+      setImage(null);
+      setIsLoading(false);
+      setFields(true);
+      setMessage('Image deleted successfully');
+      setAlertStatus('success');
+      setTimeout(() => {
+        setFields(false);
+      }, 4000);
+    });
+  };
 
-  const saveDetails = () => {};
+  const saveDetails = () => {
+    setIsLoading(true);
+    try {
+      if (!title || !calories || !price || !category || !image) {
+        setFields(true);
+        setMessage('Please fill all the fields');
+        setAlertStatus('danger');
+        setTimeout(() => {
+          setFields(false);
+          setIsLoading(false);
+        }, 4000);
+        return;
+      } else {
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imageUrl: image,
+          calories: calories,
+          price: price,
+          category: category,
+          quantity: 1,
+        };
+        saveItem(data);
+        setFields(true);
+        setMessage('Data saved successfully');
+        resetFields();
+        setAlertStatus('success');
+        setTimeout(() => {
+          setFields(false);
+          setIsLoading(false);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error);
+      setFields(true);
+      setMessage('Error while uploading image : Try again');
+      setAlertStatus('danger');
+      setTimeout(() => {
+        setFields(false);
+        setIsLoading(false);
+      }, 4000);
+    }
+  };
+
+  const resetFields = () => {
+    setTitle('');
+    setCalories('');
+    setPrice('');
+    setCategory(null);
+    setImage(null);
+  };
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
