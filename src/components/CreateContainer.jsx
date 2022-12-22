@@ -9,8 +9,6 @@ import {
 } from 'firebase/storage';
 import { storage } from '../firebase.config';
 
-import { useDispatch } from 'react-redux';
-
 import {
   MdFastfood,
   MdCloudUpload,
