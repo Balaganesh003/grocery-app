@@ -9,6 +9,8 @@ import {
 } from 'firebase/storage';
 import { storage } from '../firebase.config';
 
+import { useDispatch } from 'react-redux';
+
 import {
   MdFastfood,
   MdCloudUpload,
@@ -135,14 +137,14 @@ const CreateContainer = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-[90%] md:w-[75%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4">
+    <div className="w-full  h-auto flex items-center justify-center">
+      <div className="w-[90%] md:w-[75%] border border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center gap-4">
         {fields && (
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={`w-full p-2 rounded-lg text-lg font-semibold text-center ${
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            className={`w-[80%] md:w-auto absolute top-[15%]  mt-auto p-2 md:px-6 rounded-lg text-lg font-semibold text-center ${
               alertStatus === 'danger'
                 ? 'bg-red-400 text-red-800'
                 : 'bg-emerald-400 text-emerald-800'
@@ -181,7 +183,7 @@ const CreateContainer = () => {
           </select>
         </div>
 
-        <div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-420 cursor-pointer rounded-lg ">
+        <div className="group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-340 cursor-pointer rounded-lg">
           {isLoading ? (
             <Loader />
           ) : (
