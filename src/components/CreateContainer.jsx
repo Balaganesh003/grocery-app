@@ -8,6 +8,8 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { storage } from '../firebase.config';
+import { useDispatch } from 'react-redux';
+import { fetchGroceryData } from '../store/grocery-actions';
 
 import {
   MdFastfood,
@@ -21,6 +23,7 @@ import Loader from './Loader';
 import { saveItem } from '../utils/firebaseFunctions';
 
 const CreateContainer = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [calories, setCalories] = useState('');
   const [price, setPrice] = useState('');
@@ -113,6 +116,8 @@ const CreateContainer = () => {
           setFields(false);
           setIsLoading(false);
         }, 4000);
+
+        dispatch(fetchGroceryData());
       }
     } catch (error) {
       console.log(error);

@@ -7,12 +7,17 @@ import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from './store/auth-actions';
+import { fetchGroceryData } from './store/grocery-actions';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchGroceryData());
   }, [dispatch]);
 
   return (
