@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MdShoppingBasket } from 'react-icons/md';
+import NotFound from '../img/NotFound.svg';
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
@@ -13,10 +14,10 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       ref={rowContainer}
       className={`w-full flex items-center gap-3   my-12 scroll-smooth ${
         flag
-          ? 'overflow-x-scroll '
+          ? 'overflow-x-scroll scrollbar-none '
           : 'overflow-x-hidden flex-wrap justify-center'
       }`}>
-      {data &&
+      {data && data.length > 0 ? (
         data.map((item) => (
           <div
             key={item.id}
@@ -38,7 +39,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               </motion.div>
             </div>
 
-            <div className="w-full flex flex-col items-end justify-end -mt-8">
+            <div className="z-50 w-full flex flex-col items-end justify-end -mt-8">
               <p className="text-textColor font-semibold text-base md:text-lg">
                 {item.title}
               </p>
@@ -52,15 +53,15 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               </div>
             </div>
           </div>
-        ))}
-      {/* (
-      <div className="w-full flex flex-col items-center justify-center">
-        <img src={''} className="h-340" alt="" />
-        <p className="text-xl text-headingColor font-semibold my-2">
-          Items Not Available
-        </p>
-      </div>
-      ) */}
+        ))
+      ) : (
+        <div className="w-full flex flex-col items-center justify-center">
+          <img src={NotFound} className="h-340" alt="" />
+          <p className="text-xl text-headingColor font-semibold my-2">
+            Items Not Available
+          </p>
+        </div>
+      )}
     </div>
   );
 };

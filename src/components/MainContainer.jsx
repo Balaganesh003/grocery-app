@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import RowContainer from './RowContainer';
 import { useSelector } from 'react-redux';
+import ShopContainer from './ShopContainer';
 
 const MainContainer = () => {
   const { groceryItems } = useSelector((state) => state.grocery);
@@ -40,6 +41,8 @@ const MainContainer = () => {
           data={groceryItems?.filter((item) => item.category === 'fruits')}
         />
       </section>
+
+      <ShopContainer data={groceryItems} />
     </div>
   );
 };

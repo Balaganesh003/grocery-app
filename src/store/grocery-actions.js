@@ -25,9 +25,3 @@ export const fetchGroceryData = () => {
     }
   };
 };
-
-// export const getAllGroceryItems = async () => {
-//   return async () => {
-//     const items = useSelector((state) => state.grocery.groceryItems);
-//    }
-// };
