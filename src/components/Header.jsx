@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth-slice';
 import { uiActions } from '../store/ui-slice';
+import { cartActions } from '../store/cart-slice';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
@@ -40,6 +41,10 @@ const Header = () => {
 
   const toggleMenu = () => {
     dispatch(uiActions.toggleMenu());
+  };
+
+  const toggleCart = () => {
+    dispatch(cartActions.toggleCart());
   };
 
   return (
@@ -70,7 +75,9 @@ const Header = () => {
             </li>
           </motion.ul>
 
-          <div className="relative flex items-center justify-center">
+          <div
+            onClick={toggleCart}
+            className="relative flex items-center justify-center">
             <AiFillShopping className="text-textColor text-2xl cursor-pointer" />
             <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
               <p className=" text-white text-xs font-semibold">2</p>
@@ -172,7 +179,9 @@ const Header = () => {
           <img src={Logo} alt="logo" className="w-8 object-cover" />
           <p className="text-headingColor text-xl font-bold">Foodigo</p>
         </Link>
-        <div className="relative flex items-center justify-center">
+        <div
+          onClick={toggleCart}
+          className="relative flex items-center justify-center">
           <AiFillShopping className="text-textColor text-2xl cursor-pointer" />
           <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
             <p className=" text-white text-xs font-semibold">2</p>
