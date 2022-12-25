@@ -22,6 +22,7 @@ const Header = () => {
   const provider = new GoogleAuthProvider();
   const user = useSelector((state) => state.auth.user);
   const isMenuOpen = useSelector((state) => state.ui.isMenuOpen);
+  const totalCartItems = useSelector((state) => state.cart.totalQuantity);
 
   const login = async () => {
     if (!user) {
@@ -80,7 +81,9 @@ const Header = () => {
             className="relative flex items-center justify-center">
             <AiFillShopping className="text-textColor text-2xl cursor-pointer" />
             <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
-              <p className=" text-white text-xs font-semibold">2</p>
+              <p className=" text-white text-xs font-semibold">
+                {totalCartItems}
+              </p>
             </div>
           </div>
 
@@ -184,7 +187,9 @@ const Header = () => {
           className="relative flex items-center justify-center">
           <AiFillShopping className="text-textColor text-2xl cursor-pointer" />
           <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
-            <p className=" text-white text-xs font-semibold">2</p>
+            <p className=" text-white text-xs font-semibold">
+              {totalCartItems}
+            </p>
           </div>
         </div>
       </div>
