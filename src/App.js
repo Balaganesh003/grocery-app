@@ -5,9 +5,10 @@ import CreateContainer from './components/CreateContainer';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from './store/auth-actions';
 import { fetchGroceryData } from './store/grocery-actions';
+import { cartActions } from './store/cart-slice';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,16 @@ function App() {
   useEffect(() => {
     dispatch(fetchGroceryData());
   }, [dispatch]);
+
+  useEffect(() => {
+    const cartInfo =
+      localStorage.getItem('cartItems') !== 'undefined'
+        ? JSON.parse(localStorage.getItem('cartItems'))
+        : localStorage.clear();
+    if (cartInfo) {
+      dispatch(cartActions.setCart(cartInfo));
+    }
+  });
 
   return (
     <AnimatePresence mode="wait">

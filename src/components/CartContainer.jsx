@@ -7,12 +7,14 @@ import CartItem from './CartItem';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cart-slice';
+import fetchCart from '../store/cart-actions.js';
 
 const CartContainer = () => {
   const dispatch = useDispatch();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
   const toggleCart = () => {
     dispatch(cartActions.toggleCart());
   };

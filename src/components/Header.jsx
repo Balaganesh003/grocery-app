@@ -80,11 +80,13 @@ const Header = () => {
             onClick={toggleCart}
             className="relative flex items-center justify-center">
             <AiFillShopping className="text-textColor text-2xl cursor-pointer" />
-            <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
-              <p className=" text-white text-xs font-semibold">
-                {totalCartItems}
-              </p>
-            </div>
+            {totalCartItems > 0 && (
+              <div className=" absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-cartNumBg">
+                <p className=" text-white text-xs font-semibold">
+                  {totalCartItems}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="relative">

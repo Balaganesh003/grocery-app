@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MdShoppingBasket } from 'react-icons/md';
 import NotFound from '../img/NotFound.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cart-slice';
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
   const dispatch = useDispatch();
+
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
