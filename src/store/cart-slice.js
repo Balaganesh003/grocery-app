@@ -24,24 +24,33 @@ const cartSlice = createSlice({
       } else {
         state.items.push({
           id: newItem.id,
-          name: newItem.name,
+          title: newItem.title,
           price: newItem.price,
+          imageUrl: newItem.imageUrl,
           quantity: 1,
+          imgageUrl: newItem.imgageUrl,
           totalPrice: newItem.price,
         });
-        state.totalQuantity++;
       }
+      state.totalQuantity++;
+      state.totalPrice = Number(state.totalPrice) + Number(newItem.price);
     },
     removeItemFromCart(state, action) {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+      const items = action.payload;
+      const existingItem = state.items.find((item) => item.id === items.id);
       if (existingItem.quantity === 1) {
-        state.itemsList = state.items.filter((item) => item.id !== id);
-        state.totalQuantity--;
+        state.items = state.items.filter((item) => item.id !== items.id);
       } else {
         existingItem.quantity--;
-        existingItem.totalPrice -= existingItem.price;
+        existingItem.totalPrice -= items.price;
       }
+      state.totalQuantity -= items.quantity;
+      state.totalPrice -= items.totalPrice;
+    },
+    clearCart(state) {
+      state.items = [];
+      state.totalQuantity = 0;
+      state.totalPrice = 0;
     },
   },
 });

@@ -2,12 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MdShoppingBasket } from 'react-icons/md';
 import NotFound from '../img/NotFound.svg';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../store/cart-slice';
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
+  const dispatch = useDispatch();
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
+
+  const addItemToCart = (item) => {
+    dispatch(cartActions.addItemToCart(item));
+  };
 
   return (
     <div
@@ -33,6 +40,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                 />
               </motion.div>
               <motion.div
+                onClick={() => addItemToCart(item)}
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8">
                 <MdShoppingBasket className="text-white" />
