@@ -24,7 +24,7 @@ const CartItem = ({ data }) => {
       {/* button section */}
       <div className="group flex items-center gap-2 ml-auto cursor-pointer">
         <motion.div
-          onClick={() => dispatch(cartActions.removeItemFromCart(data))}
+          onClick={() => dispatch(cartActions.removeItemFromCart(data.id))}
           whileTap={{ scale: 0.75 }}>
           <BiMinus className="text-gray-50 " />
         </motion.div>
