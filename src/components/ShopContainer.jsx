@@ -10,8 +10,10 @@ import ItemCard from './ItemCard';
 
 const ShopContainer = ({ data }) => {
   const dispatch = useDispatch();
+
   const groceryItems = data;
   const filteredCategories = useSelector((state) => state.ui.categorySelected);
+
   const selectedCategoryList =
     groceryItems &&
     groceryItems.filter((item) => item.category === filteredCategories);
