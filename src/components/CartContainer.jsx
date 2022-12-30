@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { RiRefreshFill } from 'react-icons/ri';
 import { motion } from 'framer-motion';
@@ -7,7 +7,6 @@ import CartItem from './CartItem';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cart-slice';
-import fetchCart from '../store/cart-actions.js';
 
 const CartContainer = () => {
   const dispatch = useDispatch();
