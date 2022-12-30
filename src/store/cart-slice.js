@@ -12,9 +12,9 @@ const cartSlice = createSlice({
   initialState: initialCartState,
   reducers: {
     setCart(state, action) {
-      state.items = action.payload.items;
-      state.totalQuantity = action.payload.totalQuantity;
-      state.totalPrice = action.payload.totalPrice;
+      state.items = action.payload.items || [];
+      state.totalQuantity = action.payload.totalQuantity || 0;
+      state.totalPrice = action.payload.totalPrice || 0;
     },
 
     toggleCart(state) {

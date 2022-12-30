@@ -2,15 +2,19 @@ import React from 'react';
 import { categories } from '../utils/data';
 import { motion } from 'framer-motion';
 import { IoFastFood } from 'react-icons/io5';
-import RowContainer from './RowContainer';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { uiActions } from '../store/ui-slice';
+import DataNotFound from './NotFound';
+import ItemCard from './ItemCard';
 
 const ShopContainer = ({ data }) => {
   const dispatch = useDispatch();
   const groceryItems = data;
   const filteredCategories = useSelector((state) => state.ui.categorySelected);
+  const selectedCategoryList =
+    groceryItems &&
+    groceryItems.filter((item) => item.category === filteredCategories);
   const handleCategoryChange = (category) => {
     dispatch(uiActions.setCategory(category));
   };
@@ -59,14 +63,15 @@ const ShopContainer = ({ data }) => {
               </motion.div>
             ))}
         </div>
-
-        <div className="w-full">
-          <RowContainer
-            flag={false}
-            data={groceryItems?.filter(
-              (item) => item.category === filteredCategories
-            )}
-          />
+        {/* Product cards */}
+        <div className="w-full flex items-center gap-5 flex-wrap justify-center  my-12 scroll-smooth">
+          {selectedCategoryList && selectedCategoryList.length > 0 ? (
+            selectedCategoryList.map((item) => (
+              <ItemCard key={item.id} cardData={item} />
+            ))
+          ) : (
+            <DataNotFound />
+          )}
         </div>
       </div>
     </section>
