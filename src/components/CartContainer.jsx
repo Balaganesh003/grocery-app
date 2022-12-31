@@ -13,6 +13,7 @@ const CartContainer = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const user = useSelector((state) => state.auth.user);
 
   const toggleCart = () => {
     dispatch(cartActions.toggleCart());
@@ -74,19 +75,21 @@ const CartContainer = () => {
               </p>
             </div>
 
-            <motion.button
-              whileTap={{ scale: 0.8 }}
-              type="button"
-              className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg">
-              Check Out
-            </motion.button>
-
-            {/* <motion.button
+            {user ? (
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                type="button"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg">
+                Check Out
+              </motion.button>
+            ) : (
+              <motion.button
                 whileTap={{ scale: 0.8 }}
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg">
                 Login to check out
-              </motion.button> */}
+              </motion.button>
+            )}
           </div>
         </div>
       ) : (
