@@ -2,7 +2,6 @@ import { groceryActions } from './grocery-slice';
 import { getDocs, orderBy, collection, query } from 'firebase/firestore';
 
 import { firestore } from '../firebase.config';
-import { useSelector } from 'react-redux';
 
 export const fetchGroceryData = () => {
   return async (dispatch) => {

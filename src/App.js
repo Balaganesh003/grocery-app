@@ -5,7 +5,7 @@ import CreateContainer from './components/CreateContainer';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchUser } from './store/auth-actions';
 import { fetchGroceryData } from './store/grocery-actions';
 import { cartActions } from './store/cart-slice';
