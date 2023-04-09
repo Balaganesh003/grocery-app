@@ -7,6 +7,6 @@
 - Firebase
 - Framer motion
 
-Hosted at - https://grocery-app-balaganesh.netlify.app/
+[Go Live](https://grocery-app-balaganesh.netlify.app/)
 
 
